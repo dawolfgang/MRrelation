@@ -116,8 +116,9 @@
 ## Note that in Step 6 we're using the posterior samples from the default M-R relation 
 ## (Eqn 2) with the baseline dataset (RV only, < 4 R_Earth) to calculate the posterior 
 ## predictive distribution.  However, "posterior_samples.savr" contains a few of the  
-## other posteriors presented in Wolfgang, Rogers, & Ford (2015).  Any of these samples 
-## could be used in step 6.  The options, with self-explanatory names, are:
+## other posteriors presented in Wolfgang, Rogers, & Ford (2015), and any of them  
+## could be used in step 6.  The options, with self-explanatory names after a quick
+## read of the paper, are:
 ## 	postsamp_eqn2_baseline
 ## 	postsamp_eqn2_lt8
 ## 	postsamp_eqn2_TTVs
