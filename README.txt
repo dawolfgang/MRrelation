@@ -5,9 +5,9 @@
 
 ## This is written in R because the posterior samples that are output by the HBM MCMC   
 ## algorithm we've used (JAGS) are R objects.  Given most astronomers' unfamiliarity 
-## with the R language, I have written a detailed cookbook for using this code below 
-## under "Usage", including all of the R scripting commands you should need.  You can 
-## download R at http://www.r-project.org/; the installation is straight-forward.
+## with the R programming language, I have included below a detailed cookbook for how   
+## to use this code; it lists all of the R scripting commands you should need.  You can 
+## download R at http://www.r-project.org/; the installation is pretty straightforward.
 
 ## Contents of repository:
 ## 0) LICENSE.md
@@ -19,7 +19,7 @@
 ##       physical density constraints (0 < M_pl < M_pureiron(R_pl))
 ## 3) posterior_samples.savr
 ##       Some of the posterior samples presented in Figure 3 of Wolfgang, Rogers, & 
-##       Ford (2015), selected to be under GitHub's 100 MB size limit.
+##       Ford (2015), selected for uniqueness and to be under GitHub's 100 MB limit.
 
 ## Usage:
 ## 1) Download this directory from GitHub and unzip (See "Download ZIP" button ->)
@@ -33,7 +33,8 @@
 ## 4) Read in the code that computes the mass posterior predictive distribution:
 ##       > source(paste(filepath,"calc_mass_postpred.R",sep=""))
 ##    You may have to download some R packages to get these functions to compile;
-##    there is an R package installer in the GUI's menu bar that makes this easy.
+##    there is an R package installer in the GUI's menu bar that makes this 
+##    relatively easy.
 ##
 ## 5) Generate samples from your planet radius distribution:
 ##       > numsamples = 100000 #or however many you want
