@@ -107,8 +107,10 @@
 ##    correspond to possibly rocky compositions, use this instead:
 ##       > plot_individMR(postpred$radii,postpred$masses,rockcol="black")
 ##
-## 8) Write samples from mass distribution into text file:
-##       > write.table(postpred,file=paste(filepath,"mass_postpred_samples.txt",sep=""))
+## 8) Write samples from joint mass-radius distribution into text file:
+##       > write.table(postpred,file=paste(filepath,"massrad_postpred_samp.txt",sep=""))
+##    Or just masses:
+##       > write.table(masses,file=paste(filepath,"mass_postpred_samp.txt",sep=""))
 
 ## Note that in Step 6 we're using the posterior samples from the default M-R relation 
 ## (Eqn 2) with the baseline dataset (RV only, < 4 R_Earth) to calculate the posterior 
