@@ -1,4 +1,4 @@
-## This zipped file contains all the necessary information and code (written in R)
+## This repository contains all the necessary information and code (written in R)
 ## to calculate the posterior predictive mass distribution for an individual planet 
 ## using the result of Wolfgang, Rogers, & Ford (2015).  There are many ways in which 
 ## the planet radii can be specified, as listed in Step 5 below.  
@@ -6,17 +6,18 @@
 ## This is written in R because the posterior samples output by the MCMC algorithm we've used 
 ## to evaluate these hierarchical Bayesian models are R objects.  Given most astronomers'
 ## unfamiliarity with the R language, I have written a detailed cookbook for using this
-## code under "Usage", including all of the R scripting commands you should need.  You can 
-## download R at http://www.r-project.org/; the installation is straight-forward.
+## code below under "Usage", including all of the R scripting commands you should need.  You 
+## can download R at http://www.r-project.org/; the installation is straight-forward.
 
-## Contents of unzipped directory:
+## Contents of repository:
 ## 1) README.txt
 ##       A copy of this document
 ## 2) calc_mass_postpred.R
 ##       R code which computes the mass posterior predictive distribution with the physical
 ##       density constraints (0 < M_pl < M_pureiron(R_pl))
 ## 3) posterior_samples.savr
-##       The posterior samples presented in Figures 2 and 3 of Wolfgang, Rogers, & Ford (2015)
+##       Some of the posterior samples presented in Figure 3 of Wolfgang, Rogers, & Ford
+##       (2015), selected to be under GitHub's 100 MB size limit.
 
 ## Usage:
 ## 1) Download the Wolfgang15 file from GitHub and unzip.
@@ -103,14 +104,10 @@
 
 ## Note that in Step 6 we're using the posterior samples from the default M-R relation (Eqn 2)
 ## with the baseline dataset (RV only, < 4 R_Earth) to calculate the posterior predictive
-## distribution.  However, "posterior_samples.savr" contains all of the posteriors presented in
-## Wolfgang, Rogers, & Ford (2015) except for the RV only, < 1.6 R_Earth samples that are poorly
-## constrained by the existing data.  Therefore, any of these samples could be used in step 6.
-## The options, with self-explanatory names, include:
+## distribution.  However, "posterior_samples.savr" contains a few of the other posteriors 
+## presented in Wolfgang, Rogers, & Ford (2015).  Any of these samples could be used in step 6.
+## The options, with self-explanatory names, are:
 ## 	postsamp_eqn2_baseline
 ## 	postsamp_eqn2_lt8
 ## 	postsamp_eqn2_TTVs
-## 	postsamp_eqn2_Weissdata
-## 	postsamp_eqn1_baseline
-## 	postsamp_eqn3_baseline
 ##
