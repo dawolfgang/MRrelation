@@ -1,16 +1,17 @@
 ## This repository contains all the necessary information and code (written in R)
 ## to calculate the posterior predictive mass distribution for an individual planet 
 ## using the result of Wolfgang, Rogers, & Ford (2015).  There are many ways in which 
-## the planet radii can be specified, as listed in Step 5 below.  
+## the input planet radii can be specified, as listed in Step 5 below.  
 
-## This is written in R because the posterior samples output by the MCMC algorithm  
-## we've used to evaluate these hierarchical Bayesian models are R objects.  Given 
-## most astronomers' unfamiliarity with the R language, I have written a detailed 
-## cookbook for using this code below under "Usage", including all of the R scripting  
-## commands you should need.  You can download R at http://www.r-project.org/; the 
-## installation is straight-forward.
+## This is written in R because the posterior samples that are output by the HBM MCMC   
+## algorithm we've used (JAGS) are R objects.  Given most astronomers' unfamiliarity 
+## with the R language, I have written a detailed cookbook for using this code below 
+## under "Usage", including all of the R scripting commands you should need.  You can 
+## download R at http://www.r-project.org/; the installation is straight-forward.
 
 ## Contents of repository:
+## 0) LICENSE.md
+##       A GNU general public license
 ## 1) README.txt
 ##       A copy of this document
 ## 2) calc_mass_postpred.R
@@ -21,10 +22,10 @@
 ##       Ford (2015), selected to be under GitHub's 100 MB size limit.
 
 ## Usage:
-## 1) Download the Wolfgang15 file from GitHub and unzip.
+## 1) Download this directory from GitHub and unzip (See "Download ZIP" button ->)
 ##
-## 2) Open R and type in the path to that directory:
-##       > filepath = "/full/path/to/files/Wolfgang15/"
+## 2) Open R and type on the command line (substituting the correct path):
+##       > filepath = "/full/path/to/files/MRrelation/"
 ##
 ## 3) Read the posterior samples into R:
 ##       > load(paste(filepath,"posterior_samples.savr",sep=""))
@@ -76,7 +77,7 @@
 ##       Note that if you have Rplanet/Rstar instead of transit depth, you set 
 ##       ratioisdepth=FALSE. Also, if you have an estimate of the error on the transit 
 ##       depth/radius ratio, you can set the keyword "ratioerr" to that value, which 
-##       incorporates that (Gaussian) uncertainty, too:
+##       incorporates that (Gaussian) uncertainty, too.  For example:
 ##       > planrad = trdepth2rad(stelrad,ratio,ratioerr=0.00001,numsamp=numsamples,ratioisdepth=TRUE)
 ##
 ##    f) If you have samples of the planet's transit depth from light curve modeling
@@ -105,6 +106,9 @@
 ##    If you don't care about the proportion of posterior predictive mass draws that 
 ##    correspond to possibly rocky compositions, use this instead:
 ##       > plot_individMR(postpred$radii,postpred$masses,rockcol="black")
+##
+## 8) Write samples from mass distribution into text file:
+##       > write.table(postpred,file=paste(filepath,"mass_postpred_samples.txt",sep=""))
 
 ## Note that in Step 6 we're using the posterior samples from the default M-R relation 
 ## (Eqn 2) with the baseline dataset (RV only, < 4 R_Earth) to calculate the posterior 
