@@ -1,6 +1,23 @@
 ## R code that calculates the posterior predictive mass distribution for an individual planet 
 ## using the result of Wolfgang, Rogers, & Ford (2015).
 
+## Copyright (C) 2015  Angie Wolfgang
+
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2 of the License, or
+## (at your option) any later version.
+
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+
+## You should have received a copy of the GNU General Public License along
+## with this program; if not, write to the Free Software Foundation, Inc.,
+## 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.  You can
+## contact Angie Wolfgang at awolfgan@ucsc.edu as well.
+
 rnorm.bound <- function(Ndata, mu, stddev, lower.bound = -Inf, upper.bound = 0) {
   ## Drawing from a normal distribution that is truncated by upper and lower limits.
   x = rep(0.,Ndata)
@@ -87,7 +104,7 @@ isplanetrocky <- function(rad, mass, likeEarth=FALSE) {
   } else {
     ## From the ice-rock mass fraction relation (in which 0% ice means 100% rock)
     #radrock = (0.1603)*log(mass,base=10)^2 + (0.7387)*log(mass,base=10)+ 1.1193
-    ## From the rock-iron mass fraction relation (in which the fraction is % rock; we're looking at 100% rock)
+    ## From the rock-iron mass fraction relation (in which the fraction is % rock; we are looking at 100% rock)
     radrock = (0.0592*1 + 0.0975)*log(mass,base=10)^2 + (0.2337*1 + 0.4938)*log(mass,base=10) + 0.3102*1 + 0.7932
   }
   isrocky = rad < radrock
@@ -156,8 +173,13 @@ plot_individMR <- function(rad, mass, plotisrocky=TRUE, rockcol="red", lhist=40)
 
     ## Plot marginal histograms: top first, then right
     par(mar=c(0, pextl, 0, 0))
-    barplot(xhist$counts, axes=FALSE, space=0, col="black", border = NA)
-    if (plotisrocky) {barplot(xhistrock$counts, axes=FALSE, space=0, col=rockcol, add=TRUE, border = NA)}
+	if (xhist$breaks[1] == xhist$breaks[2]) {
+	  plot(rep(xhist$breaks[1],2),c(0,1),type="l",yaxt="n",xaxt="n",ylab="",bty="n",lwd=4)
+	  line(rep(xhist$breaks[1],2),c(0,length(whererock)/length(rad)))
+	} else {
+      barplot(xhist$counts, axes=FALSE, space=0, col="black", border = NA)
+      if (plotisrocky) {barplot(xhistrock$counts, axes=FALSE, space=0, col=rockcol, add=TRUE, border = NA)}
+	}
     par(mar=c(pextd, 0, 0, 0))
     barplot(yhist$counts, axes=FALSE,space=0, horiz=TRUE, col="black", border = NA)
     if (plotisrocky) {barplot(yhistrock$counts, axes=FALSE, space=0, horiz=TRUE, col=rockcol, add=TRUE, border = NA)}
@@ -179,7 +201,7 @@ massguess_individpl <- function(sim, numdraws, rad, raderr=0, likeEarth=FALSE) {
 
   ## Generating the posterior predictive distribution:
   ## First, drawing samples for the population-wide parameters that all the M-R relationships have in common.
-  ## Note that the way the mass-generating functions were defined, the normalizing constant can't be exponentiated yet.
+  ## Note that the way the mass-generating functions were defined, the normalizing constant cannot be exponentiated yet.
   normconst.post = sim$BUGSoutput$sims.matrix[,"normconst"]
   powindex.post = sim$BUGSoutput$sims.matrix[,"powindex"]
   wherepostdraw = ceiling(runif(numdraws,0,length(normconst.post)))
