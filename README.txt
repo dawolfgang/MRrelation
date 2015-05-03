@@ -15,6 +15,8 @@
 ## to use this code; it lists all of the R scripting commands you should need.  You can 
 ## download R at http://www.r-project.org/; the installation is pretty straightforward.
 
+## If you use this code for your work, please cite Wolfgang, Rogers, & Ford (2015).
+
 ## Contents of repository:
 ## 0) LICENSE.md
 ##       A GNU general public license
