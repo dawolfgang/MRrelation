@@ -4,9 +4,10 @@
 ## the hyperparameter (i.e. the M-R relation parameters') posteriors displayed in 
 ## Figures 2 and 3 to produce a distribution for the planet's possible masses that 
 ## incorporates these uncertainties (as opposed to simply using Equation 5, which 
-## implements the best-fit parameters).  Likewise, it marginalizes over the distribution 
-## of possible radii that you have independently calculated; there are many ways in  
-## which the input planet radii can be specified, as listed in Step 5 below.  
+## implements the best-fit parameters).  Likewise, it marginalizes over the  
+## distribution of possible radii that you have independently calculated; there are   
+## many ways in which the input planet radii can be specified depending on what 
+## information you have, as listed in Step 5 below.  
 
 ## This is written in R because the posterior samples that are output by the HBM MCMC   
 ## algorithm we've used (JAGS) are R objects.  Given most astronomers' unfamiliarity 
