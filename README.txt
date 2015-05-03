@@ -1,7 +1,12 @@
-## This repository contains all the necessary information and code (written in R)
-## to calculate the posterior predictive mass distribution for an individual planet 
-## using the result of Wolfgang, Rogers, & Ford (2015).  There are many ways in which 
-## the input planet radii can be specified, as listed in Step 5 below.  
+## This repository contains all the necessary posteriors and code (written in R) to
+## calculate the posterior predictive mass distribution for an individual planet using
+## the result of Wolfgang, Rogers, & Ford (2015).  This distribution marginalizes over
+## the hyperparameter (i.e. the M-R relation parameters') posteriors displayed in 
+## Figures 2 and 3 to produce a distribution for the planet's possible masses that 
+## incorporates these uncertainties (as opposed to simply using Equation 5, which 
+## implements the best-fit parameters).  Likewise, it marginalizes over the distribution 
+## of possible radii that you have independently calculated; there are many ways in  
+## which the input planet radii can be specified, as listed in Step 5 below.  
 
 ## This is written in R because the posterior samples that are output by the HBM MCMC   
 ## algorithm we've used (JAGS) are R objects.  Given most astronomers' unfamiliarity 
@@ -40,12 +45,12 @@
 ##       > numsamples = 100000 #or however many you want
 ##
 ##    a) If you only have a single radius measurement with no error bars, use:
-##       > planrad = (the quoted radius measurement, in units of Earth radii)
+##       > planrad = <the quoted radius measurement, in units of Earth radii>
 ##       > planraderr = 0
 ##
 ##    b) If you have a radius measurement with an error bar, use:
-##       > planrad = (The quoted planet radius, in units of Earth radii)
-##       > planraderr = (The one-sigma error of that radius measurement in Earth radii)
+##       > planrad = <The quoted planet radius, in units of Earth radii>
+##       > planraderr = <The one-sigma error of that radius measurement in Earth radii>
 ##       The radius distribution will be assumed to be Gaussian.
 ##
 ##    c) If you have samples from the planet radius distribution, read them into a 
@@ -60,7 +65,7 @@
 ##       "depths.txt"), label the column of depth values as "Depth", then in R:
 ##       > data2 = read.table("/full/path/to/text/file/depths.txt", header=T)
 ##       > ratio = data2$Depth  #must be pure fractions
-##       > stelrad = (stellar radius measurement, in Solar radii)
+##       > stelrad = <stellar radius measurement, in Solar radii>
 ##       > planrad = trdepth2rad(stelrad,ratio,numsamp=numsamples,ratioisdepth=TRUE)
 ##       > planraderr = 0
 ##       Note that if instead you get Rplanet/Rstar from your light curve modeling,
@@ -70,7 +75,7 @@
 ##       and an estimate of the transit depth, read the stellar radii into a text file 
 ##       (i.e. "stelrad.txt"), label the column of stellar radius values as "Srad", 
 ##       then in R:
-##       > ratio = (transit depth measurement, as a pure fraction)
+##       > ratio = <transit depth measurement, as a pure fraction (NOT ppm)>
 ##       > data3 = read.table("/full/path/to/text/file/stelrad.txt", header=T)
 ##       > stelrad = data3$Srad
 ##       > planrad = trdepth2rad(stelrad,ratio,numsamp=numsamples,ratioisdepth=TRUE)

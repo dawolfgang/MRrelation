@@ -1,5 +1,9 @@
 ## R code that calculates the posterior predictive mass distribution for an individual planet 
-## using the result of Wolfgang, Rogers, & Ford (2015).
+## using the result of Wolfgang, Rogers, & Ford (2015).  This distribution marginalizes over
+## the hyperparameter posteriors displayed in Figures 2 and 3 to produce a distribution for
+## the planet\'s possible masses that incorporates these uncertainties (as opposed to 
+## simply using Equation 5).  Likewise, it marginalizes over the distribution of possible 
+## radii that you input.  See README.txt for usage and how to execute this code.
 
 ## Copyright (C) 2015  Angie Wolfgang
 
@@ -155,7 +159,7 @@ plot_individMR <- function(rad, mass, plotisrocky=TRUE, rockcol="red", lhist=40)
     bspc <- 0 # space between scatter plot and bar plots
     par. <- par(mar=c(pextd, pextl, bspc, bspc), oma=rep(ospc, 4)) # plot parameters
 
-    ## Joint posterior predictive distribution
+    ## Plotting the joint posterior predictive distribution
     plot(rad, mass, xlab=expression(paste("Radius (R"["Earth"],")")), ylab=expression(paste("Mass (M"["Earth"],")")), cex=.5, pch=16, cex.axis=1.6, cex.lab=1.6)
     if (plotisrocky) {
       isrocky = isplanetrocky(rad,mass)
@@ -246,7 +250,7 @@ massguess_individpl <- function(sim, numdraws, rad, raderr=0, likeEarth=FALSE) {
     isrocky = NA
   }
 
-  ## Calculating which samples yield possibly rocky planets, and producing a joint posterior predictive
+  ## Calculating which samples yield possibly rocky planets, and plotting a joint posterior predictive
   ## distribution with marginalized mass, radius distributions.
   if (is.numeric(masses)) {
     plot_individMR(raddraws,masses)
@@ -254,5 +258,6 @@ massguess_individpl <- function(sim, numdraws, rad, raderr=0, likeEarth=FALSE) {
     print(paste("Fraction of (mass,radius) samples that are more dense than 100% silicate rock:",sum(isrocky)/length(masses)))
   }
  
+  ## Returning the joint posterior predictive distribution. 
   list(radii=raddraws,masses=masses,isrocky=isrocky)
 }
